@@ -1,28 +1,85 @@
 import { Request, Response } from "express";
-import { getChatbotResponse } from "../services/chatbot.service";
-import { ChatRequestBody } from "../types/chatbot.types";
+import { getAIResponse } from "../services/ai.service";
 
-export const handleChatMessage = (
-  req: Request<{}, {}, ChatRequestBody>,
-  res: Response
-): void => {
-  const { message } = req.body;
-  const userId = (req.headers["x-user-id"] as string) || "default-user";
+const getSuggestedReplies = (message: string): string[] => {
+  const text = message.toLowerCase();
 
-  if (!message || typeof message !== "string") {
-    res.status(400).json({
-      success: false,
-      message: "The field 'message' is required and must be a string."
-    });
-    return;
+  if (
+    text.includes("bebida") ||
+    text.includes("tomar") ||
+    text.includes("refresco") ||
+    text.includes("jugo")
+  ) {
+    return [
+      "Quiero algo sin azúcar",
+      "Muéstrame opciones refrescantes",
+      "Busco algo económico",
+    ];
   }
 
-  const botReply = getChatbotResponse(message, userId);
+  if (
+    text.includes("snack") ||
+    text.includes("botana") ||
+    text.includes("comer")
+  ) {
+    return [
+      "Quiero algo salado",
+      "Recomiéndame algo ligero",
+      "Muéstrame opciones económicas",
+    ];
+  }
 
-  res.status(200).json({
-    success: true,
-    userId,
-    userMessage: message,
-    botReply
-  });
+  if (
+    text.includes("recomienda") ||
+    text.includes("recomend") ||
+    text.includes("opciones")
+  ) {
+    return [
+      "Quiero una bebida refrescante",
+      "Muéstrame snacks",
+      "Busco algo premium",
+    ];
+  }
+
+  return [
+    "Quiero una bebida refrescante",
+    "Muéstrame snacks",
+    "¿Qué me recomiendas?",
+  ];
+};
+
+export const chatController = async (req: Request, res: Response) => {
+  try {
+    const { message } = req.body;
+
+    if (!message || typeof message !== "string") {
+      return res.status(400).json({
+        success: false,
+        message: "Message is required and must be a string",
+      });
+    }
+
+    const aiReply = await getAIResponse(message);
+    const suggestedReplies = getSuggestedReplies(message);
+
+    return res.status(200).json({
+      success: true,
+      botReply: aiReply,
+      suggestedReplies,
+    });
+  } catch (error) {
+    console.error("Error in chatController:", error);
+
+    return res.status(500).json({
+      success: false,
+      message: "Internal server error",
+      botReply:
+        "Ocurrió un problema al generar la respuesta. Intenta nuevamente en unos segundos.",
+      suggestedReplies: [
+        "Quiero una bebida refrescante",
+        "Muéstrame snacks",
+        "Busco algo económico",
+      ],
+    });
+  }
 };
