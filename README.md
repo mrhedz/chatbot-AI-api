@@ -1,44 +1,45 @@
-# Chatbot IA para Ventas - Frontend (React + TypeScript)
+# Chatbot IA para Ventas - API Backend (Node.js + TypeScript)
 
-Interfaz web desarrollada con React y TypeScript para un chatbot inteligente enfocado en recomendaciones de productos y asistencia conversacional.
+Backend API desarrollado con Node.js y TypeScript, enfocado en asistentes conversacionales con inteligencia artificial para recomendaciones de productos y automatización de ventas.
 
 ---
 
 ## Descripción
 
-Aplicación frontend diseñada para interactuar con una API de inteligencia artificial, permitiendo a los usuarios enviar mensajes y recibir respuestas dinámicas en tiempo real.
+API backend diseñada para generar respuestas inteligentes en lenguaje natural a partir de mensajes del usuario, simulando un asistente de ventas.
 
-El sistema está enfocado en ofrecer una experiencia conversacional moderna, clara y fluida, ideal para integrarse en plataformas web, e-commerce o productos SaaS.
+Permite integrarse fácilmente con aplicaciones web, e-commerce, dashboards o plataformas SaaS para mejorar la experiencia de usuario mediante interacción conversacional.
 
 ---
 
 ## Features
 
-- Interfaz conversacional tipo chat  
-- Integración con API backend basada en IA  
-- Auto-scroll al último mensaje  
-- Indicador de escritura (typing)  
-- Sugerencias rápidas para mejorar la interacción  
-- Input siempre visible (UX optimizada)  
-- Diseño responsive y moderno  
+- Respuestas generadas con inteligencia artificial  
+- Recomendaciones dinámicas de productos  
+- Sugerencias rápidas para mejorar la UX  
+- Endpoint de chat listo para integración  
+- Manejo estructurado de respuestas  
+- Arquitectura modular escalable  
+- Health check para monitoreo  
 
 ---
 
 ## Tecnologías
 
-- React  
+- Node.js  
 - TypeScript  
-- Vite  
-- Axios  
-- CSS personalizado  
+- Express  
+- OpenAI API  
+- dotenv  
+- cors  
 
 ---
 
 ## Instalación
 
 ~~~bash
-git clone https://github.com/mrhedz/chatbot-ai-sales-frontend.git
-cd chatbot-ai-sales-frontend
+git clone https://github.com/mrhedz/chatbot-ai-sales-api.git
+cd chatbot-ai-sales-api
 npm install
 ~~~
 
@@ -49,12 +50,13 @@ npm install
 Crear archivo `.env` en la raíz del proyecto:
 
 ~~~env
-VITE_API_URL=http://localhost:3000/api/chat
+OPENAI_API_KEY=openai_api_key
+PORT=3000
 ~~~
 
 ---
 
-## Ejecutar aplicación
+## Ejecutar API
 
 ~~~bash
 npm run dev
@@ -62,45 +64,72 @@ npm run dev
 
 ---
 
-## Flujo de uso
+## Endpoints
 
-- El usuario escribe un mensaje en la interfaz  
-- El frontend envía la petición al backend  
-- La API procesa el mensaje con IA  
-- Se recibe la respuesta y se renderiza en el chat  
-- Se muestran sugerencias para continuar la conversación  
+Health
+
+- GET /health
+
+Chat
+
+- POST /api/chat
+
+---
+
+## Ejemplo de uso
+
+POST /api/chat
+
+~~~json
+{
+  "message": "Quiero una bebida refrescante"
+}
+~~~
+
+Respuesta:
+
+~~~json
+{
+  "success": true,
+  "botReply": "Te recomiendo una bebida fría con notas cítricas.",
+  "suggestedReplies": [
+    "Quiero algo sin azúcar",
+    "Muéstrame opciones refrescantes"
+  ]
+}
+~~~
 
 ---
 
 ## Casos de uso
 
 - Chatbots para e-commerce  
-- Asistentes de ventas digitales  
-- Landing pages con IA  
-- Productos SaaS con interfaz conversacional  
+- Asistentes de ventas con IA  
+- Automatización de atención al cliente  
+- Interfaces conversacionales en productos SaaS  
 
 ---
 
 ## Estructura del proyecto
 
 src/
-  components/
-  hooks/
+  controllers/
+  routes/
   services/
+  config/
   types/
-  styles/
 
 ---
 
 ## Notas
 
-- Requiere una API backend activa para funcionar  
-- Diseñado con enfoque en experiencia de usuario (UX)  
-- Arquitectura preparada para escalar nuevas funcionalidades  
+- Requiere una API Key válida de OpenAI  
+- Diseñado para integrarse fácilmente con frontend conversacional  
+- Puede escalarse para múltiples flujos de negocio  
 
 ---
 
 ## Autor
 
 Martin Hernandez  
-Frontend & Backend Developer especializado en interfaces modernas y experiencias conversacionales
+Backend Developer especializado en APIs, microservicios e integraciones
