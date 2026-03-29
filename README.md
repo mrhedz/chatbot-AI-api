@@ -1,73 +1,106 @@
-Chatbot IA para Ventas - API Backend
+# Chatbot IA para Ventas - Frontend (React + TypeScript)
 
-API backend para un chatbot inteligente enfocado en recomendaciones de productos y asistencia conversacional.
+Interfaz web desarrollada con React y TypeScript para un chatbot inteligente enfocado en recomendaciones de productos y asistencia conversacional.
 
-Descripción
+---
 
-Esta API permite generar respuestas inteligentes en lenguaje natural a partir de mensajes del usuario, simulando un asistente de ventas.
+## Descripción
 
-Está diseñada para integrarse fácilmente en aplicaciones web, e-commerce o plataformas SaaS.
+Aplicación frontend diseñada para interactuar con una API de inteligencia artificial, permitiendo a los usuarios enviar mensajes y recibir respuestas dinámicas en tiempo real.
 
-Funcionalidades
-Respuestas generadas con inteligencia artificial
-Recomendaciones dinámicas de productos
-Sugerencias rápidas para mejorar la experiencia del usuario
-Endpoint de chat listo para integración
-Endpoint de salud para monitoreo
-Tecnologías
-Node.js
-TypeScript
-Express
-OpenAI API
-Endpoints
-Health
+El sistema está enfocado en ofrecer una experiencia conversacional moderna, clara y fluida, ideal para integrarse en plataformas web, e-commerce o productos SaaS.
 
-GET /health
+---
 
-Respuesta:
-{
-"success": true
-}
+## Features
 
-Chat
+- Interfaz conversacional tipo chat  
+- Integración con API backend basada en IA  
+- Auto-scroll al último mensaje  
+- Indicador de escritura (typing)  
+- Sugerencias rápidas para mejorar la interacción  
+- Input siempre visible (UX optimizada)  
+- Diseño responsive y moderno  
 
-POST /api/chat
+---
 
-Body:
-{
-"message": "Quiero una bebida refrescante"
-}
+## Tecnologías
 
-Respuesta:
-{
-"success": true,
-"botReply": "Te recomiendo una bebida fría con notas cítricas.",
-"suggestedReplies": [
-"Quiero algo sin azúcar",
-"Muéstrame opciones refrescantes"
-]
-}
+- React  
+- TypeScript  
+- Vite  
+- Axios  
+- CSS personalizado  
 
-Ejecutar en local
+---
 
-git clone <repo-url>
-cd chatbot-ai-sales-api
+## Instalación
+
+~~~bash
+git clone https://github.com/mrhedz/chatbot-ai-sales-frontend.git
+cd chatbot-ai-sales-frontend
 npm install
+~~~
+
+---
+
+## Variables de entorno
+
+Crear archivo `.env` en la raíz del proyecto:
+
+~~~env
+VITE_API_URL=http://localhost:3000/api/chat
+~~~
+
+---
+
+## Ejecutar aplicación
+
+~~~bash
 npm run dev
+~~~
 
-Variables de entorno
+---
 
-OPENAI_API_KEY=openai_api_key
-PORT=3000
+## Flujo de uso
 
-Casos de uso
+- El usuario escribe un mensaje en la interfaz  
+- El frontend envía la petición al backend  
+- La API procesa el mensaje con IA  
+- Se recibe la respuesta y se renderiza en el chat  
+- Se muestran sugerencias para continuar la conversación  
 
-Chatbots para e-commerce
-Asistentes de ventas con IA
-Automatización de atención al cliente
-Interfaces conversacionales en productos SaaS
+---
 
-Autor
+## Casos de uso
 
-Martin Hernandez
-Backend Developer especializado en APIs, microservicios e integraciones
+- Chatbots para e-commerce  
+- Asistentes de ventas digitales  
+- Landing pages con IA  
+- Productos SaaS con interfaz conversacional  
+
+---
+
+## Estructura del proyecto
+
+src/
+  components/
+  hooks/
+  services/
+  types/
+  styles/
+
+---
+
+## Notas
+
+- Requiere una API backend activa para funcionar  
+- Diseñado con enfoque en experiencia de usuario (UX)  
+- Arquitectura preparada para escalar nuevas funcionalidades  
+
+---
+
+## Autor
+
+Martin Hernandez  
+Frontend & Backend Developer especializado en interfaces modernas y experiencias conversacionales
